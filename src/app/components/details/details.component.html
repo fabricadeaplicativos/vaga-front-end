@@ -1,3 +1,22 @@
-<p>
-  details works!
-</p>
+<mat-card class="detail-card" *ngIf="selectedComic">
+    <mat-card-header>
+      <div mat-card-avatar class="detail-img"><img src="{{selectedComic?.thumbnail}}" alt=""></div>
+      <mat-card-title>{{selectedComic?.title}}</mat-card-title>
+      <mat-card-subtitle>
+          <mat-chip-list class="mat-chip-list-stacked">
+              <mat-chip *ngFor="let p of selectedComic?.prices" color="primary">
+                <span *ngIf="p.type === 'digitalPurchasePrice'"><strong>Mídia digital:</strong> {{p.price | currency:'BRL':'symbol-narrow':'1.2-2':'pt'}}</span>
+                <span *ngIf="p.type !== 'digitalPurchasePrice'"><strong>Mídia física:</strong> {{p.price | currency:'BRL':'symbol-narrow':'1.2-2':'pt'}}</span>
+              </mat-chip>
+          </mat-chip-list>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="content mat-body-2">
+      <p><strong>Tipo:</strong> {{selectedComic?.format}}.</p>
+      <p><strong>Páginas:</strong> {{selectedComic?.pageCount}}.</p>
+      <h3>Descrição</h3>
+      <p>
+        {{selectedComic?.description}}
+      </p>
+    </mat-card-content>
+</mat-card>

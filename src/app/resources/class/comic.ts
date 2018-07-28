@@ -6,6 +6,7 @@ export class Comic {
     public pageCount: number;
     public format: string;
     public prices: Array<Price>;
+    public rare: boolean;
 
     constructor(obj: any) {
         this.id = obj.id;
@@ -15,6 +16,7 @@ export class Comic {
         this.pageCount = obj.pageCount;
         this.format = obj.format;
         this.price(obj.prices);
+        this.rare = false;
     }
 
     private price(data: any): Array<Price> {
