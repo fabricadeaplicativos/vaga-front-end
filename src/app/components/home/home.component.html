@@ -1,0 +1,33 @@
+
+<div class="container">
+  <mat-card class="card" *ngFor="let comic of comics">
+    <mat-card-header>
+      <mat-card-title>{{comic?.title}}</mat-card-title>
+      <mat-card-subtitle>
+          <mat-chip-list class="mat-chip-list-stacked">
+              <mat-chip *ngFor="let p of comic.prices" color="primary">
+                <span *ngIf="p.type === 'digitalPurchasePrice'"><strong>Mídia digital:</strong> {{p.price | currency:'BRL':'symbol-narrow':'1.2-2':'pt'}}</span>
+                <span *ngIf="p.type !== 'digitalPurchasePrice'"><strong>Mídia física:</strong> {{p.price | currency:'BRL':'symbol-narrow':'1.2-2':'pt'}}</span>
+              </mat-chip>
+          </mat-chip-list>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <img mat-card-image [src]="comic.thumbnail" alt="Photo of a Shiba Inu">
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" matTooltip="Adicionar ao carrinho">
+        <i class="material-icons">add_shopping_cart</i>
+      </button>
+      <button mat-raised-button color="primary" matTooltip="Detalhe">
+        <i class="material-icons">remove_red_eye</i>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+    <div>
+        <button mat-raised-button color="primary" matTooltip="Detalhe" (click)="loadMore()">
+            <!-- <i class="material-icons">remove_red_eye</i> -->
+            Carregar mais
+        </button>
+    </div>
