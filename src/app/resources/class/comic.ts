@@ -1,4 +1,4 @@
-export class Comic {
+class Comic {
     public id: number;
     public title: string;
     public description: string;
@@ -39,3 +39,5 @@ class Price {
 
     ) {}
 }
+
+export {Comic, Price };

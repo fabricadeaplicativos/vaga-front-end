@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ComicsService } from '../../resources/services/comics.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Comic } from '../../resources/class/comic';
@@ -9,28 +9,20 @@ import { Comic } from '../../resources/class/comic';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  @Input() id: number;
-  public selectedComic: Comic;
+  @Input() selectedComic: Comic;
+  @Output() reset = new EventEmitter;
 
   constructor(
     private comicsService: ComicsService,
   ) { }
 
   ngOnInit() {
-    this.comicDetail(this.id);
+
   }
 
-  public comicDetail(id: number) {
+  public close() {
     this.selectedComic = undefined;
-    this.comicsService.getComic(id)
-    .subscribe(
-      payload => {
-        this.selectedComic = payload[0];
-        console.log('detalhes', this.selectedComic);
-      }, (err: HttpErrorResponse) => {
-        console.log(err);
-      }
-    );
+    this.reset.emit(this.selectedComic);
   }
 
 }

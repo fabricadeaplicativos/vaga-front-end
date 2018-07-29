@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ComicsService } from '../../resources/services/comics.service';
-import { Comic } from '../../resources/class/comic';
+import { Comic, Price } from '../../resources/class/comic';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +11,16 @@ export class HomeComponent implements OnInit {
   public comics: Array<Comic> = [];
   public offset: number;
   public load: boolean;
-  public id: number;
+  public selectedComic: Comic;
+  public shoppingCart: Array<Price>;
+
+  public color = '#E92E2C';
+
   constructor(private comicsService: ComicsService) { }
 
   ngOnInit() {
-    this.id = undefined;
+    this.shoppingCart = [];
+    this.selectedComic = undefined;
     this.load = false;
     this.offset = 0;
     this.comicsList();
@@ -29,6 +34,7 @@ export class HomeComponent implements OnInit {
         this.comics = this.randomRare(payload);
         console.log(this.comics);
       }, err => {
+        this.comics = [];
         console.log(err);
       }
     );
@@ -46,6 +52,7 @@ export class HomeComponent implements OnInit {
         console.log('carregar mais', this.comics);
       }, err => {
         console.log(err);
+        this.comics = this.comics;
         this.load = false;
       }
     );
@@ -59,6 +66,16 @@ export class HomeComponent implements OnInit {
       origin[random].rare = true;
     }
     return origin;
+  }
+
+  public setShoppingCart(value: Price, id: number) {
+    this.shoppingCart.push(value);
+    console.log(this.shoppingCart);
+
+  }
+
+  public reset(c: Comic) {
+    this.selectedComic = c;
   }
 
 }

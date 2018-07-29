@@ -5,6 +5,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   imports: [
@@ -13,14 +15,18 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatButtonModule,
     MatChipsModule,
     MatTooltipModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatCheckboxModule,
+    MatBadgeModule
   ],
   exports: [
     MatCardModule,
     MatButtonModule,
     MatChipsModule,
     MatTooltipModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatCheckboxModule,
+    MatBadgeModule
   ],
   declarations: []
 })

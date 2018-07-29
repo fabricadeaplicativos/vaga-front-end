@@ -1,0 +1,22 @@
+@import "../../resources/scss/utilities.scss";
+
+.header {
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 2em;
+    background-color: $mat-primary;
+    display: flex;
+    justify-content: space-between;
+    img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+    .checkout {
+        align-self: center;
+    }
+    @media screen and (max-width: 700px) {
+        .display-2 {
+            font-size: 1em;
+        }
+    }
+}

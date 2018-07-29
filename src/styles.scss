@@ -1,8 +1,40 @@
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@import '~@angular/material/theming';
+@include mat-core();
+@import 'app/resources/scss/utilities.scss';
+
+$marvel-app-primary: mat-palette($mat-red);
+$marvel-app-accent:  mat-palette($mat-yellow, A200, A100, A400);
+$marvel-app-theme: mat-light-theme($marvel-app-primary, $marvel-app-accent);
+
+@include angular-material-theme($marvel-app-theme);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 .container {
     width: 90%;
     margin: 0 auto;
     @media screen and (max-width: 700px) {
         width: 100%;
+    }
+}
+
+.rare-comic {
+    position: absolute;
+    right: -10px;
+    top: -17px;
+    background-color: #fff;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+    z-index: 99;
+    i {
+        font-size: 2em;
+        color: rgb(255,215,0);
     }
 }
