@@ -9,29 +9,36 @@ registerLocaleData(ptBr);
 
 import { AngularMaterialModule } from './resources/angular-material/angular-material.module';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
 
 import { ComicsService } from './resources/services/comics.service';
 import { HeaderComponent } from './components/header/header.component';
+import { ShoppingCartService } from './resources/services/shopping-cart.service';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DetailsComponent,
-    HeaderComponent
+    HeaderComponent,
+    CheckoutComponent
   ],
   imports: [
-    BrowserModule,
+BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     ComicsService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

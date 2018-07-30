@@ -24,7 +24,8 @@ export class ComicsService {
       offset = 0;
     }
     return this.http.get<Array<any>>(`
-      ${this.url}?formatType=comic&noVariants=true&orderBy=title&limit=${limit}&offset=${offset}&apikey=${this.apiKey}&hash=${this.hash}`
+      ${this.url}?format=comic&formatType=comic&noVariants=true&orderBy=title&limit=${limit}
+      &offset=${offset}&apikey=${this.apiKey}&hash=${this.hash}`
     )
     .pipe(
       map((payload: any) => {
@@ -32,17 +33,4 @@ export class ComicsService {
       })
     );
   }
-
-  public getComic(id: number): Observable<Comic> {
-    return this.http.get<Comic>(`
-      ${this.url}/${id}?apikey=${this.apiKey}&hash=${this.hash}`
-    )
-    .pipe(
-      map((payload: any) => {
-        return payload.data.results.map(item => new Comic(item));
-      })
-    );
-  }
-
-
 }

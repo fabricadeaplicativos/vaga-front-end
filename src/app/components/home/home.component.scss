@@ -23,6 +23,9 @@
         max-height: 300px;
         min-height: 200px;
     }
+    .mat-card-title {
+        font-size: 18px;
+    }
     @media screen and (max-width: 400px) {
         min-width: 90%;
         max-width: 90%;
@@ -39,7 +42,6 @@
     padding: 2em 0;
 }
 
-// button {
-//     background-color: $mat-primary !important;
-//     color: #fff !important;
-// }
+.price {
+    font-size: 2em;
+}

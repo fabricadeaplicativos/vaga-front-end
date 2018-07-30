@@ -7,6 +7,7 @@ class Comic {
     public format: string;
     public prices: Array<Price>;
     public rare: boolean;
+    public quantity: number;
 
     constructor(obj: any) {
         this.id = obj.id;
@@ -17,6 +18,7 @@ class Comic {
         this.format = obj.format;
         this.price(obj.prices);
         this.rare = false;
+        this.quantity = 1;
     }
 
     private price(data: any): Array<Price> {

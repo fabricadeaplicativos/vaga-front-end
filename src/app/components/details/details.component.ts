@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ComicsService } from '../../resources/services/comics.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 import { Comic } from '../../resources/class/comic';
+import { ShoppingCartService } from '../../resources/services/shopping-cart.service';
 
 @Component({
   selector: 'app-details',
@@ -10,19 +10,25 @@ import { Comic } from '../../resources/class/comic';
 })
 export class DetailsComponent implements OnInit {
   @Input() selectedComic: Comic;
-  @Output() reset = new EventEmitter;
+  @Output() closeDetails = new EventEmitter;
 
-  constructor(
-    private comicsService: ComicsService,
-  ) { }
+  constructor(private shoppingCartService: ShoppingCartService, public snackbar: MatSnackBar) { }
 
   ngOnInit() {
 
   }
 
+  public setShoppingCart(comic: Comic) {
+    this.shoppingCartService.setShoppingCartItem(comic);
+    this.snackbar.open(`O ítem "${comic.title}" foi adicionado ao carrinho.`, '', {
+      duration: 3000
+    });
+
+  }
+
   public close() {
     this.selectedComic = undefined;
-    this.reset.emit(this.selectedComic);
+    this.closeDetails.emit(this.selectedComic);
   }
 
 }

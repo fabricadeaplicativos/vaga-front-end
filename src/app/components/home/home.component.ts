@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { ComicsService } from '../../resources/services/comics.service';
-import { Comic, Price } from '../../resources/class/comic';
+import { Comic } from '../../resources/class/comic';
+import { ShoppingCartService } from '../../resources/services/shopping-cart.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -12,14 +15,10 @@ export class HomeComponent implements OnInit {
   public offset: number;
   public load: boolean;
   public selectedComic: Comic;
-  public shoppingCart: Array<Price>;
 
-  public color = '#E92E2C';
-
-  constructor(private comicsService: ComicsService) { }
+  constructor(private comicsService: ComicsService, private shoppingCartService: ShoppingCartService, public snackbar: MatSnackBar) { }
 
   ngOnInit() {
-    this.shoppingCart = [];
     this.selectedComic = undefined;
     this.load = false;
     this.offset = 0;
@@ -32,10 +31,11 @@ export class HomeComponent implements OnInit {
     .subscribe(
       payload => {
         this.comics = this.randomRare(payload);
-        console.log(this.comics);
-      }, err => {
-        this.comics = [];
-        console.log(err);
+      },
+       (err: HttpErrorResponse) => {
+         this.comics = [];
+          const body = err.error.status;
+          this.snackbar.open(body, 'close');
       }
     );
   }
@@ -49,18 +49,17 @@ export class HomeComponent implements OnInit {
       payload => {
         this.comics = this.comics.concat(this.randomRare(payload));
         this.load = false;
-        console.log('carregar mais', this.comics);
-      }, err => {
-        console.log(err);
+      },
+      (err: HttpErrorResponse | any) => {
         this.comics = this.comics;
-        this.load = false;
+        const body = err.error.status;
+        this.snackbar.open(body, 'close');
       }
     );
   }
 
   private randomRare(origin: Array<Comic>) {
     const percent = Math.round((10 * origin.length) / 100);
-    console.log('10% de ' , origin.length, 'é', percent);
     const random = Math.floor(Math.random() * origin.length);
     for (let i = 0; i < percent; i++) {
       origin[random].rare = true;
@@ -68,13 +67,15 @@ export class HomeComponent implements OnInit {
     return origin;
   }
 
-  public setShoppingCart(value: Price, id: number) {
-    this.shoppingCart.push(value);
-    console.log(this.shoppingCart);
+  public setShoppingCart(comic: Comic) {
+    this.shoppingCartService.setShoppingCartItem(comic);
+    this.snackbar.open(`O ítem "${comic.title}" foi adicionado ao carrinho.`, '', {
+      duration: 3000
+    });
 
   }
 
-  public reset(c: Comic) {
+  public close(c: Comic) {
     this.selectedComic = c;
   }
 
