@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, OnChanges } from '@angular/core';
 import { ShoppingCartService } from '../../resources/services/shopping-cart.service';
 import { Comic } from '../../resources/class/comic';
+import { DetailService } from '../../resources/services/detail.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   public shoppingCart = new EventEmitter;
   public comics: Array<Comic>;
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService, private datail: DetailService) { }
 
   ngOnInit() {
     this.comics = [];
@@ -22,6 +23,10 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.comics = this.shoppingCartService.getShoppingcartItem();
+  }
+
+  public returnToHome() {
+    this.datail.returnToHome();
   }
 
 }

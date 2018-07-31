@@ -21,6 +21,9 @@
             }
             .content {
                 padding: 0 1em;
+                button {
+                    margin-top: 2em;
+                }
                 @media screen and (max-width: 700px) {
                      width: 100%;
                 }

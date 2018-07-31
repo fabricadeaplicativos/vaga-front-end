@@ -30,7 +30,7 @@
       </mat-list-item>
   </mat-list>
   <button mat-raised-button matTooltip="Remover" *ngIf="!ok" color="primary" [routerLink]="['/home']">
-    Voltar às compras!
+    Continuar comprando
   </button>
   <div *ngIf="ok && shoppingCart.length">
       <h2 class="mat-display-1">Pagamento</h2>
@@ -38,7 +38,7 @@
           <h4 class="mat-caption">Cartão de crédito</h4>
           <mat-form-field>
             <input matInput placeholder="9999-9999-9999-9999" name="cardNumber"
-               formControlName='cardNumber'>
+               formControlName='cardNumber' autocomplete="off">
             <mat-error *ngIf="!f.get('cardNumber').valid">Formato inválido, tente novamente.</mat-error>
           </mat-form-field>
           <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="saveOrder()">

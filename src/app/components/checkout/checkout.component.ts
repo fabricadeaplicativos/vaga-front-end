@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit {
     public snackbar: MatSnackBar
   ) {
     this.buildForm();
-   }
+  }
 
   ngOnInit() {
     this.ok = false;
@@ -51,27 +51,22 @@ export class CheckoutComponent implements OnInit {
 
   public calcTotal(items: Array<Comic>): number {
     this.total = 0;
-    items.forEach( item => {
-       this.total += (item.prices[0].price * item.quantity);
+    items.forEach(item => {
+      this.total += (item.prices[0].price * item.quantity);
     });
     return this.total;
   }
 
-  public buildForm() {
-    this.f = this.formbuilder.group({
-      cardNumber: ['', [Validators.required, Validators.pattern(/\d{4}([ -]\d{4}){3}/), Validators.maxLength(19)]],
-    });
-  }
 
   public saveOrder() {
     if (this.validateCard()) {
-      this.snackbar.open(`Pedido concluído`, '', {
+      this.snackbar.open(`Pedido concluído. Você receberá um e-mail com os detalhes do pedido.`, 'Ok', {
         duration: 3000
       });
       this.shoppingCartService.shoppingCart = [];
       this.route.navigate(['/home']);
     } else {
-      this.snackbar.open(`Cartão de crádito inválido`, 'Ok', {
+      this.snackbar.open(`Cartão de crédito inválido.`, 'Ok', {
         duration: 3000
       });
       this.f.reset();
@@ -79,7 +74,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   public validateCard() {
-    const n =  this.f.get('cardNumber').value.replace(/[^0-9]+/g, '');
+    const n = this.f.get('cardNumber').value.replace(/[^0-9]+/g, '');
     const number = n.split('');
     if (number[0] === '4') {
       return true;
@@ -87,6 +82,12 @@ export class CheckoutComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  public buildForm() {
+    this.f = this.formbuilder.group({
+      cardNumber: ['', [Validators.required, Validators.pattern(/\d{4}([ -]\d{4}){3}/), Validators.maxLength(19)]],
+    });
   }
 
 

@@ -1,5 +1,7 @@
 <div class="header mat-elevation-z8">
-    <img [routerLink]="['/home']" src="https://78.media.tumblr.com/avatar_0d037b9efe87_512.png" alt="">
+    <a (click)="returnToHome()">
+        <img src="https://78.media.tumblr.com/avatar_0d037b9efe87_512.png" alt="logo Marvel">
+    </a>
     <div class="checkout">
         <button *ngIf="shoppingCartService.shoppingCart.length" mat-raised-button color="primary" 
             matBadge="{{shoppingCartService.shoppingCart?.length}}" matBadgePosition="before" 

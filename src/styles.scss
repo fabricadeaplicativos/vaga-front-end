@@ -40,3 +40,7 @@ $marvel-app-theme: mat-light-theme($marvel-app-primary, $marvel-app-accent);
         color: rgb(255,215,0);
     }
 }
+
+.text-right {
+    text-align: right;
+}

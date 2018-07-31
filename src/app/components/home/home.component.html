@@ -1,4 +1,4 @@
-<div class="container mat-body-2" *ngIf="!selectedComic">
+<div class="container mat-body-2" *ngIf="!detail.selectedComic">
   <mat-progress-bar class="carregando" *ngIf="!comics && !comics?.length"  mode="indeterminate"></mat-progress-bar>
 <div class="box" *ngIf="comics">
   <mat-card class="card" *ngFor="let comic of comics">
@@ -14,11 +14,11 @@
               </span>
             </div>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions class="text-right">
       <button mat-raised-button matTooltip="Adicionar ao carrinho" (click)="setShoppingCart(comic)" color="primary">
         <i class="material-icons">add_shopping_cart</i>
       </button>
-      <button mat-raised-button matTooltip="Detalhe" (click)="selectedComic = comic" color="primary">
+      <button mat-raised-button matTooltip="Detalhe" (click)="detail.selectedComic = comic" color="primary">
         <i class="material-icons">remove_red_eye</i>
       </button>
     </mat-card-actions>
@@ -26,12 +26,12 @@
 </div>
 <mat-progress-bar class="carregando" *ngIf="load"  mode="indeterminate"></mat-progress-bar>
     <div class="load-more">
-        <button mat-raised-button *ngIf="comics && comics?.length > 1" color="primary" (click)="loadMore()">
+        <button mat-raised-button *ngIf="comics && comics?.length > 1" [disabled]="load" color="primary" (click)="loadMore()">
             <i class="material-icons">expand_more</i>
       </button>
   </div>
 </div>
-<div class="container mat-body-2" *ngIf="selectedComic">
-  <app-details *ngIf="selectedComic" [selectedComic]="selectedComic" (closeDetails)="close($event)"></app-details>
+<div class="container mat-body-2" *ngIf="detail.selectedComic">
+  <app-details *ngIf="detail.selectedComic" [selectedComic]="detail.selectedComic"></app-details>
   <!--Obs: escolhi mostrar os detalhes a partir de @Input para evitar o tempo de carregamento de uma nova requisição e para preservar o status "raro"-->
 </div>

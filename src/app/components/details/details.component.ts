@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Comic } from '../../resources/class/comic';
 import { ShoppingCartService } from '../../resources/services/shopping-cart.service';
+import { DetailService } from '../../resources/services/detail.service';
 
 @Component({
   selector: 'app-details',
@@ -12,7 +13,11 @@ export class DetailsComponent implements OnInit {
   @Input() selectedComic: Comic;
   @Output() closeDetails = new EventEmitter;
 
-  constructor(private shoppingCartService: ShoppingCartService, public snackbar: MatSnackBar) { }
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    public snackbar: MatSnackBar,
+    private detail: DetailService
+  ) { }
 
   ngOnInit() {
 
@@ -28,7 +33,7 @@ export class DetailsComponent implements OnInit {
 
   public close() {
     this.selectedComic = undefined;
-    this.closeDetails.emit(this.selectedComic);
+    this.detail.returnToHome(this.selectedComic);
   }
 
 }

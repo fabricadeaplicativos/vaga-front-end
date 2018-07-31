@@ -4,6 +4,7 @@ import { ComicsService } from '../../resources/services/comics.service';
 import { Comic } from '../../resources/class/comic';
 import { ShoppingCartService } from '../../resources/services/shopping-cart.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DetailService } from '../../resources/services/detail.service';
 
 @Component({
   selector: 'app-home',
@@ -11,15 +12,20 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
   public comics: Array<Comic> = [];
   public offset: number;
   public load: boolean;
-  public selectedComic: Comic;
 
-  constructor(private comicsService: ComicsService, private shoppingCartService: ShoppingCartService, public snackbar: MatSnackBar) { }
+  constructor(
+    private comicsService: ComicsService,
+    private shoppingCartService: ShoppingCartService,
+    public snackbar: MatSnackBar,
+    public detail: DetailService
+  ) { }
 
   ngOnInit() {
-    this.selectedComic = undefined;
+    this.detail.selectedComic = undefined;
     this.load = false;
     this.offset = 0;
     this.comicsList();
@@ -75,8 +81,5 @@ export class HomeComponent implements OnInit {
 
   }
 
-  public close(c: Comic) {
-    this.selectedComic = c;
-  }
 
 }

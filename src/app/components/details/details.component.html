@@ -12,7 +12,7 @@
     <mat-card-title>{{selectedComic?.title}}</mat-card-title>
         <mat-card-subtitle>
             <div *ngFor="let p of selectedComic?.prices" color="primary">
-              <span *ngIf="p.type !== 'digitalPurchasePrice'">
+              <span *ngIf="p.type === 'printPrice'">
                 <strong> {{p.price | currency:'BRL':'symbol-narrow':'1.2-2':'pt'}}</strong>
               </span>
             </div>
@@ -22,16 +22,10 @@
         <p>
           <strong>Páginas:</strong> {{selectedComic?.pageCount}}.</p>
         <h3>Descrição</h3>
-        <p [innerHTML]="selectedComic.description">
-        </p>
+        <p [innerHTML]="selectedComic.description"></p>
+        <button  mat-raised-button matTooltip="Adicionar ao carrinho" (click)="setShoppingCart(selectedComic)" color="primary">
+            <i class="material-icons">add_shopping_cart</i>
+        </button>
     </div>
   </mat-card-content>
-  <mat-card-actions>
-      <button mat-raised-button matTooltip="Adicionar ao carrinho" (click)="setShoppingCart(selectedComic)" color="primary">
-          <i class="material-icons">add_shopping_cart</i>
-      </button>
-    <button mat-raised-button color="primary" (click)="close()">
-      Voltar
-    </button>
-  </mat-card-actions>
 </mat-card>

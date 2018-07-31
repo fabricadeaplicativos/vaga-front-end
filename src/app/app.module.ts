@@ -15,8 +15,9 @@ import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
 
 import { ComicsService } from './resources/services/comics.service';
-import { HeaderComponent } from './components/header/header.component';
 import { ShoppingCartService } from './resources/services/shopping-cart.service';
+import { DetailService } from './resources/services/detail.service';
+import { HeaderComponent } from './components/header/header.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
@@ -28,7 +29,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     CheckoutComponent
   ],
   imports: [
-BrowserModule,
+    BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
@@ -38,7 +39,8 @@ BrowserModule,
   ],
   providers: [
     ComicsService,
-    ShoppingCartService
+    ShoppingCartService,
+    DetailService
   ],
   bootstrap: [AppComponent]
 })
