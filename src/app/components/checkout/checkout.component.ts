@@ -44,7 +44,7 @@ export class CheckoutComponent implements OnInit {
       this.shoppingCartService.removeItem(item);
     }
     if (!this.shoppingCartService.shoppingCart.length) {
-      this.caption = 'Você não tem mais ítens no carrinho';
+      this.caption = 'Você não tem ítens no carrinho';
     }
     return this.shoppingCart = this.shoppingCartService.shoppingCart.slice();
   }
