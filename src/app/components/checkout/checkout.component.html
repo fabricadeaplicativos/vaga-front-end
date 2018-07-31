@@ -1,0 +1,53 @@
+<div class="container mat-body-2">
+  <h2 class="mat-display-1">Finalizar compra</h2>
+  <h4 class="mat-caption">{{caption}}</h4>
+  <mat-list *ngIf="shoppingCart.length">
+    <div *ngFor="let item of shoppingCart">
+      <mat-list-item class="item">
+        <div><strong>{{item?.quantity}} x</strong> {{item?.title}}</div>
+        <div class="text-right">
+          <p *ngIf="item.quantity === 1"> {{item.prices[0]?.price | currency:'BRL':'symbol-narrow':'1.2-2':'pt'}}</p>
+          <p *ngIf="item.quantity > 1"> {{(item.prices[0]?.price * item.quantity) | currency:'BRL':'symbol-narrow':'1.2-2':'pt'}}</p>
+        </div>
+        <div class="text-right">          
+          <button mat-raised-button matTooltip="Remover" color="primary" (click)="removeItem(item) ">
+            <i class="material-icons">remove_shopping_cart</i>
+          </button>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+    <mat-list-item class="item">
+        <div></div>
+        <div class="text-right">
+            {{calcTotal(shoppingCart) | currency:'BRL':'symbol-narrow':'1.2-2':'pt'}}
+        </div>
+        <div class="text-right">          
+          <button mat-raised-button matTooltip="Remover" color="primary" (click)="ok = true">
+            Ok
+          </button>
+        </div>
+      </mat-list-item>
+  </mat-list>
+  <button mat-raised-button matTooltip="Remover" *ngIf="!ok" color="primary" [routerLink]="['/home']">
+    Continuar comprando
+  </button>
+  <div *ngIf="ok && shoppingCart.length">
+      <h2 class="mat-display-1">Pagamento</h2>
+      <form [formGroup]='f'>
+          <h4 class="mat-caption">Cartão de crédito</h4>
+          <mat-form-field>
+            <input matInput placeholder="9999-9999-9999-9999" name="cardNumber"
+               formControlName='cardNumber' autocomplete="off">
+            <mat-error *ngIf="!f.get('cardNumber').valid">Formato inválido, tente novamente.</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="f.invalid" (click)="saveOrder()">
+              Finalizar
+          </button>
+          <div class="box-img">
+            <img class="b-img" src="https://png.icons8.com/metro/1600/visa.png" alt="">
+            <img class="b-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9xb5oEBz9nt40pN31aihoL2g9SCsw7gvJdifCpYe3sYCvSfLQ" alt="">
+          </div>
+      </form>
+  </div>
+</div>

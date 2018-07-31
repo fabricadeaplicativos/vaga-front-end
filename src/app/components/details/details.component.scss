@@ -1,0 +1,32 @@
+.mat-card-header {
+    flex-wrap: wrap;
+}
+
+.detail-card {
+    width: 100%;
+    margin: 1em auto;
+        .mat-card-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            .img {
+                width: 20%;
+                img {
+                    width: 100%;
+                }
+            }
+            .text {
+                width: 80%;
+            }
+            .content {
+                padding: 0 1em;
+                button {
+                    margin-top: 2em;
+                }
+                @media screen and (max-width: 700px) {
+                     width: 100%;
+                }
+            }
+        }
+}

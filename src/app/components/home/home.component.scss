@@ -1,0 +1,47 @@
+@import "../../resources/scss/utilities.scss";
+
+.box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @media screen and (max-width: 500px) {
+        justify-content: center;
+    }
+}
+
+.card {
+    max-width: 250px;
+    margin: 1em 0;
+    padding-top: 0;
+    .mat-card-header {
+        display: block;
+    }
+
+    img {
+        margin-top: 5px;
+        max-height: 300px;
+        min-height: 200px;
+    }
+    .mat-card-title {
+        font-size: 18px;
+    }
+    @media screen and (max-width: 400px) {
+        min-width: 90%;
+        max-width: 90%;
+    }
+}
+
+.carregando {
+    background-color: $mat-primary;
+    border-color: $mat-primary;
+}
+
+.load-more {
+    text-align: center;
+    padding: 2em 0;
+}
+
+.price {
+    font-size: 2em;
+}

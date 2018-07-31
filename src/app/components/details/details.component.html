@@ -1,0 +1,31 @@
+<mat-card class="detail-card" *ngIf="selectedComic">
+  <mat-card-header>
+    <div *ngIf="selectedComic.rare" class="rare-comic">
+      <i class="material-icons" matTooltip="RARO">stars</i>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="content img">
+        <img src="{{selectedComic?.thumbnail}}" alt="">
+    </div>
+  <div class="content text mat-body-2">
+    <mat-card-title>{{selectedComic?.title}}</mat-card-title>
+        <mat-card-subtitle>
+            <div *ngFor="let p of selectedComic?.prices" color="primary">
+              <span *ngIf="p.type === 'printPrice'">
+                <strong> {{p.price | currency:'BRL':'symbol-narrow':'1.2-2':'pt'}}</strong>
+              </span>
+            </div>
+        </mat-card-subtitle>
+        <p>
+          <strong>Tipo:</strong> {{selectedComic?.format}}.</p>
+        <p>
+          <strong>Páginas:</strong> {{selectedComic?.pageCount}}.</p>
+        <h3>Descrição</h3>
+        <p [innerHTML]="selectedComic.description"></p>
+        <button  mat-raised-button matTooltip="Adicionar ao carrinho" (click)="setShoppingCart(selectedComic)" color="primary">
+            <i class="material-icons">add_shopping_cart</i>
+        </button>
+    </div>
+  </mat-card-content>
+</mat-card>

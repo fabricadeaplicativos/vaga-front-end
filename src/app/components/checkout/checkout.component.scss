@@ -1,0 +1,26 @@
+.item {
+    div {
+        display: inline-block;
+        width: 33%;
+        
+    }
+}
+
+.total {
+    padding: 1em;
+    width: 30%;
+    float: right;
+    background-color: #cecece;
+}
+
+.ng-invalid {
+    border-color: #E92E2C !important;
+}
+
+.ng-valid {
+    border-color: green !important;
+}
+.b-img {
+    width: 40px;
+    margin-right: 2em;
+}
