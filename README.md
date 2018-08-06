@@ -2,9 +2,9 @@
 
 ## Instruções:
 
-1. Faça um fork deste repositório;
+1. Faça um clone deste repositório;
 2. Instale o angular material: https://material.angular.io;
-3. Após terminar seu teste submeta um pull request e aguarde seu feedback;
+3. Após terminar seu teste nos envie o seu projeto e aguarde seu feedback;
 
 Este projeto foi gerado utilizando o [Angular CLI](https://github.com/angular/angular-cli) versão 6.1.1.
 
